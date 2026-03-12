@@ -58,6 +58,8 @@
 
 <script>
 
+const API_BASE = "https://fakenewsdetectionai.onrender.com";
+
 async function checkNews(){
 
 let news=document.getElementById("news").value;
@@ -70,7 +72,7 @@ return;
 document.getElementById("result").innerText="Analyzing news with AI...";
 document.getElementById("explain").innerText="";
 
-let response=await fetch("/predict",{
+let response=await fetch(API_BASE + "/predict",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({text:news})
@@ -99,7 +101,7 @@ return;
 document.getElementById("result").innerText="Analyzing article...";
 document.getElementById("explain").innerText="";
 
-let response=await fetch("/predict_url",{
+let response=await fetch(API_BASE + "/predict_url",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({url:url})
@@ -121,5 +123,6 @@ document.getElementById("explain").innerText=
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>
+
 
 </html>
