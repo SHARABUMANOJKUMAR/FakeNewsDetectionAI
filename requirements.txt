@@ -1,0 +1,9 @@
+Flask
+scikit-learn
+pandas
+numpy
+joblib
+newspaper3k
+lxml
+lxml_html_clean
+gunicorn

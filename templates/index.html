@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>AI Fake News Detector</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧠 AI Fake News Detection</h1>
+
+<p class="subtitle">Smart Journalism Awareness Platform</p>
+
+
+<!-- TEXT CHECK -->
+<div class="card">
+
+<h2>Check News Text</h2>
+
+<textarea id="news" rows="6" placeholder="Paste news text here..."></textarea>
+
+<button onclick="checkNews()">Analyze News</button>
+
+</div>
+
+
+<!-- URL CHECK -->
+<div class="card">
+
+<h2>Check News URL</h2>
+
+<input type="text" id="url" placeholder="Paste news article URL">
+
+<button onclick="checkURL()">Analyze URL</button>
+
+</div>
+
+
+<!-- RESULT AREA -->
+<div class="result-box">
+
+<h3>AI Prediction Result</h3>
+
+<div id="result"></div>
+
+<div id="explain"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+async function checkNews(){
+
+let news=document.getElementById("news").value;
+
+if(news.trim()==""){
+alert("Please enter news text");
+return;
+}
+
+document.getElementById("result").innerText="Analyzing news with AI...";
+document.getElementById("explain").innerText="";
+
+let response=await fetch("/predict",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({text:news})
+})
+
+let data=await response.json()
+
+document.getElementById("result").innerText=data.prediction
+
+document.getElementById("explain").innerText=
+"Important words: " + data.explanation.join(", ")
+
+}
+
+
+
+async function checkURL(){
+
+let url=document.getElementById("url").value;
+
+if(url.trim()==""){
+alert("Please enter URL");
+return;
+}
+
+document.getElementById("result").innerText="Analyzing article...";
+document.getElementById("explain").innerText="";
+
+let response=await fetch("/predict_url",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({url:url})
+})
+
+let data=await response.json()
+
+document.getElementById("result").innerText=data.prediction
+
+document.getElementById("explain").innerText=
+"Important words: " + data.explanation.join(", ")
+
+}
+
+</script>
+
+
+<!-- CONNECT GOOGLE SHEETS API -->
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+
+</html>
