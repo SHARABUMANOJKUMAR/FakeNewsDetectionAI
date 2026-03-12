@@ -4,8 +4,10 @@ from newspaper import Article
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Load ML model
 model = joblib.load("model/fake_news_model.pkl")
@@ -150,3 +152,4 @@ def predict_url():
 if __name__ == "__main__":
 
     app.run(debug=True)
+
