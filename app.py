@@ -71,8 +71,11 @@ def home():
 
 @app.route("/health")
 def health():
-    return {"status": "running"}
-
+    return {
+        "status": "running",
+        "service": "Fake News Detection API",
+        "version": "1.0"
+    }
 # ================================
 # TEXT CHECK
 # ================================
@@ -145,4 +148,5 @@ def predict_url():
 
 
 if __name__ == "__main__":
+
     app.run(debug=True)
