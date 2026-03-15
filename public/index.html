@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI SaaS Intelligence | Fake News Detection</title>
+    <!-- Modern AI Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 3D Animated Background Scene -->
+    <div class="scene">
+        <div class="gradient-overlay"></div>
+        <div id="canvas-elements" class="canvas-elements">
+            <!-- Dynamically generated floating elements -->
+            <div class="brain-icon">🧠</div>
+            <div class="data-particle p1"></div>
+            <div class="data-particle p2"></div>
+            <div class="article-card a1">📰</div>
+            <div class="article-card a2">📄</div>
+            <div class="line l1"></div>
+            <div class="line l2"></div>
+        </div>
+    </div>
+
+    <!-- Main SaaS Container -->
+    <div class="saas-wrapper">
+        <main class="dashboard-container">
+            
+            <!-- Header Section -->
+            <header class="saas-header">
+                <div class="header-brand">
+                    <span class="brain-logo">🧠</span>
+                    <h1>AI Fake News Detection</h1>
+                </div>
+                <p class="tagline">Smart Journalism Awareness Platform</p>
+            </header>
+
+            <!-- Analytics Dashboard -->
+            <section class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🚩</div>
+                    <div class="stat-info">
+                        <h3 id="stat-fake">0</h3>
+                        <p>Fake News Detected</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <h3 id="stat-real">0</h3>
+                        <p>Real News Verified</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <h3 id="stat-total">0</h3>
+                        <p>Total Analyzed</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Input Analyzers -->
+            <div class="analyzer-grid">
+                <section class="analyzer-card">
+                    <h3>Check News Text</h3>
+                    <textarea id="news" placeholder="Paste news text here..."></textarea>
+                    <button class="primary-btn" onclick="checkNews()">Analyze News</button>
+                </section>
+
+                <section class="analyzer-card">
+                    <h3>Check News URL</h3>
+                    <input type="text" id="url" placeholder="Paste news article URL">
+                    <button class="primary-btn" onclick="checkURL()">Analyze URL</button>
+                </section>
+            </div>
+
+            <!-- result Panel (Hidden by default) -->
+            <section id="result-panel" class="result-panel hidden">
+                <div class="result-header">
+                    <h2>AI Prediction Diagnostics</h2>
+                    <div id="badge" class="result-badge">WAITING</div>
+                </div>
+
+                <div class="result-content">
+                    <!-- Gauge and Meters -->
+                    <div class="diagnostics-primary">
+                        <div class="gauge-container">
+                            <svg class="gauge" viewBox="0 0 100 100">
+                                <circle class="gauge-bg" cx="50" cy="50" r="45"></circle>
+                                <circle id="gauge-fill" class="gauge-fill" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                            <div class="gauge-text">
+                                <span id="gauge-percent">0%</span>
+                                <small>Fake Probability</small>
+                            </div>
+                        </div>
+
+                        <div class="metrics-list">
+                            <div class="metric-item">
+                                <div class="metric-label">
+                                    <span>AI Confidence</span>
+                                    <span id="conf-val">0%</span>
+                                </div>
+                                <div class="progress-track"><div id="conf-bar" class="progress-fill"></div></div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-label">
+                                    <span>Credibility Score</span>
+                                    <span id="cred-val">0%</span>
+                                </div>
+                                <div class="progress-track"><div id="cred-bar" class="progress-fill"></div></div>
+                            </div>
+                            <div id="risk-display" class="risk-indicator">Risk Level: <span id="risk-level">---</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Prediction Summary -->
+                    <div class="prediction-view">
+                        <div id="result-text" class="prediction-main">---</div>
+                        <div class="suspicious-words">
+                            <strong>Suspicious Patterns:</strong>
+                            <div id="explain" class="word-tags">---</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detection History -->
+            <section class="history-section">
+                <h3>Detection History</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Source/Title</th>
+                                <th width="100">Type</th>
+                                <th width="120">Outcome</th>
+                                <th width="100">Confidence</th>
+                                <th width="120">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-body">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Newsletter Subscription -->
+            <section class="newsletter-section">
+                <div class="newsletter-card">
+                    <div class="newsletter-content">
+                        <h3>Intelligence Updates</h3>
+                        <p>Subscribe to receive the latest misinformation research and AI alerts.</p>
+                    </div>
+                    <form id="subscribeForm" class="newsletter-form">
+                        <input type="email" id="email" placeholder="Enter your email address" required>
+                        <button type="submit" class="subscribe-btn">Subscribe</button>
+                    </form>
+                    <div id="message" class="subscribe-msg"></div>
+                </div>
+            </section>
+
+            <!-- Awareness Section -->
+            <footer class="saas-footer">
+                <div class="awareness-card">
+                    <span class="warning-icon">⚠️</span>
+                    <p>Always verify information before sharing news online. Misinformation spreads quickly and can harm society.</p>
+                </div>
+                <div class="watermark">
+                    Developed by <span class="brand-accent">Shaivika Groups</span>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
