@@ -6,5 +6,11 @@ joblib
 newspaper3k
 lxml
 lxml_html_clean
-flask-cors
 gunicorn
+feedparser
+sentence-transformers
+tldextract
+langdetect
+googletrans==4.0.0-rc1
+requests
+beautifulsoup4
