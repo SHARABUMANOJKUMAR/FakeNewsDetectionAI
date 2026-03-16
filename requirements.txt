@@ -14,3 +14,17 @@ langdetect
 googletrans==4.0.0-rc1
 requests
 beautifulsoup4
+Flask
+joblib
+numpy
+scikit-learn
+newspaper3k
+beautifulsoup4
+requests
+tldextract
+feedparser
+langdetect
+googletrans==4.0.0-rc1
+sentence-transformers
+torch
+lxml_html_clean
