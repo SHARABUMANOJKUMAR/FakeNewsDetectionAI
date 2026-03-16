@@ -20,6 +20,7 @@ numpy
 scikit-learn
 newspaper3k
 beautifulsoup4
+
 requests
 tldextract
 feedparser
